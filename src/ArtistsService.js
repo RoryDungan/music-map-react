@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000/api/v1'
+const apiUrl = '/api/v1'
 
 export const getAllArtists = async function () {
   const url = apiUrl + '/artists'
@@ -6,7 +6,7 @@ export const getAllArtists = async function () {
   if (!res.ok) {
     throw new Error(`Tried to GET ${url}, returned status ${res.status}.`)
   }
-  const resJSON = res.json()
+  const resJSON = await res.json()
 
   const artists = []
   for (const k of Object.keys(resJSON)) {
