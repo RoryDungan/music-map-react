@@ -1,0 +1,10 @@
+{
+    "extends": "standard",
+    "env": {
+        "jest": true,
+        "browser": true
+    },
+    "rules": {
+        "no-unused-vars": "warn"
+    }
+}
