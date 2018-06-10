@@ -2,20 +2,24 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-import { getAllArtists } from './ArtistsService'
-
 class App extends Component {
-  constructor () {
-    super()
-
-    getAllArtists()
+  componentDidMount () {
+    this.props.getAllArtists()
       .then(artists => {
+        if (this.shouldCancel) {
+          return
+        }
+
         this.setState({
           artists,
           ...this.state
         })
       })
       .catch(ex => console.error('Error requesting artists: ' + ex.message))
+  }
+
+  componentWillUnmount () {
+    this.shouldCancel = true
   }
 
   renderArtistsList () {
