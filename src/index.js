@@ -6,6 +6,9 @@ import registerServiceWorker from './registerServiceWorker'
 
 import { getAllArtists } from './ArtistsService'
 
-ReactDOM.render(<App getAllArtists={getAllArtists}/>, document.getElementById('root'))
+ReactDOM.render(
+  <App getAllArtists={getAllArtists}/>,
+  document.getElementById('root')
+)
 
 registerServiceWorker()
