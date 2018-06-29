@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import Button from 'antd/lib/button'
+import ArtistsSelect from './ArtistsSelect.js'
 import './App.css'
 
 class App extends Component {
@@ -23,18 +24,11 @@ class App extends Component {
     this.shouldCancel = true
   }
 
-  renderArtistsList () {
+  getArtists () {
     if (!this.state || !this.state.artists) {
-      return <p>Loading...</p>
+      return []
     }
-    return (
-      <ul>
-        {
-          this.state.artists
-            .map(a => <li key={a.id}>{a.name}</li>)
-        }
-      </ul>
-    )
+    return this.state.artists
   }
 
   render () {
@@ -48,7 +42,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        {this.renderArtistsList()}
+        <ArtistsSelect artists={ this.getArtists() }></ArtistsSelect>
       </div>
     )
   }
