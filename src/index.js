@@ -4,10 +4,10 @@ import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-import { getAllArtists } from './ArtistsService'
+import { createGetAllArtists } from './ArtistsService'
 
 ReactDOM.render(
-  <App getAllArtists={getAllArtists}/>,
+  <App getAllArtists={createGetAllArtists(fetch)}/>,
   document.getElementById('root')
 )
 

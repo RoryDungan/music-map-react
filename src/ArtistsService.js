@@ -1,10 +1,6 @@
 const apiUrl = '/api/v1'
 
-export const getAllArtists = async function (fetch) {
-  if (!fetch) {
-    fetch = window.fetch
-  }
-
+const getAllArtists = async function (fetch) {
   const url = apiUrl + '/artists'
   const res = await fetch(url)
   if (!res.ok) {
@@ -20,7 +16,7 @@ export const getAllArtists = async function (fetch) {
   return artists.sort((a, b) => a.name.localeCompare(b.name))
 }
 
-export const getArtistStats = async function (artistId) {
+const getArtistStats = async function (fetch, artistId) {
   const url = apiUrl + '/' + artistId
   const res = await fetch(url)
 
@@ -29,4 +25,8 @@ export const getArtistStats = async function (artistId) {
   }
 
   return res.json()
+}
+
+export const createGetAllArtists = function (fetch) {
+  return () => getAllArtists(fetch)
 }
