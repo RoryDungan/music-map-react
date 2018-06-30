@@ -10,6 +10,11 @@
     "rules": {
         "no-unused-vars": "warn",
         "no-useless-constructor": "warn",
+        "no-multiple-empty-lines": "warn",
+        "padded-blocks": "warn",
+        "no-trailing-spaces": "off",
+        "brace-style": "warn",
+        "indent": "warn",
         "react/prop-types": "off"
     }
 }
