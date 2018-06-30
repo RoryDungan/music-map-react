@@ -14,6 +14,7 @@
         "padded-blocks": "warn",
         "no-trailing-spaces": "off",
         "brace-style": "warn",
+        "no-unreachable": "warn",
         "indent": "warn",
         "react/prop-types": "off"
     }
