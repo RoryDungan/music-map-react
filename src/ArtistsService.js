@@ -1,6 +1,10 @@
 const apiUrl = '/api/v1'
 
-export const getAllArtists = async function () {
+export const getAllArtists = async function (fetch) {
+  if (!fetch) {
+    fetch = window.fetch
+  }
+
   const url = apiUrl + '/artists'
   const res = await fetch(url)
   if (!res.ok) {
