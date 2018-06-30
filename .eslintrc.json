@@ -1,11 +1,15 @@
 {
-    "extends": "standard",
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
     "env": {
         "jest": true,
         "browser": true
     },
     "rules": {
         "no-unused-vars": "warn",
-        "no-useless-constructor": "warn"
+        "no-useless-constructor": "warn",
+        "react/prop-types": "off"
     }
 }
