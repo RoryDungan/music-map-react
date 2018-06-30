@@ -13,16 +13,7 @@ export const getAllArtists = async function () {
     artists.push({ id: k, name: resJSON[k] })
   }
 
-  return artists.sort((a, b) => {
-    const nameA = a.name.toLowerCase()
-    const nameB = b.name.toLowerCase()
-    if (nameA < nameB) {
-      return -1
-    } else if (nameA > nameB) {
-      return 1
-    }
-    return 0
-  })
+  return artists.sort((a, b) => a.name.localeCompare(b.name))
 }
 
 export const getArtistStats = async function (artistId) {
