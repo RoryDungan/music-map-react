@@ -37,4 +37,42 @@ describe('get all artists', async () => {
       'Tried to GET /api/v1/artists, returned status ' + status + '.'
     ))
   })
+
+  it('transforms returned data correctly', async () => {
+    expect.assertions(1)
+
+    const dataFromAPI = {
+      'abc1234': 'Kero Kero Bonito'
+    }
+    const expectedResponse = [
+      { id: 'abc1234', name: 'Kero Kero Bonito' }
+    ]
+
+    const mockFetch = setupMockFetch(true, dataFromAPI)
+
+    const getAllArtists = createGetAllArtists(mockFetch)
+
+    await expect(getAllArtists()).resolves.toEqual(expectedResponse)
+  })
+
+  it('sorts by artist name', async () => {
+    expect.assertions(1)
+
+    const dataFromAPI = {
+      'abc1234': 'Kero Kero Bonito',
+      'testId2': 'Brockhampton',
+      '1234abc': 'death grips'
+    }
+    const expectedResponse = [
+      { id: 'testId2', name: 'Brockhampton' },
+      { id: '1234abc', name: 'death grips' },
+      { id: 'abc1234', name: 'Kero Kero Bonito' }
+    ]
+
+    const mockFetch = setupMockFetch(true, dataFromAPI)
+
+    const getAllArtists = createGetAllArtists(mockFetch)
+
+    await expect(getAllArtists()).resolves.toEqual(expectedResponse)
+  })
 })
