@@ -1,4 +1,4 @@
-import { createGetAllArtists } from './ArtistsService'
+import createArtistsService from './ArtistsService'
 
 describe('get all artists', async () => {
   const setupMockFetch = function (ok, jsonRes, status) {
@@ -17,9 +17,9 @@ describe('get all artists', async () => {
 
     const mockFetch = setupMockFetch()
 
-    const getAllArtists = createGetAllArtists(mockFetch)
+    const artistsService = createArtistsService(mockFetch)
 
-    await getAllArtists()
+    await artistsService.getAllArtists()
 
     expect(mockFetch.mock.calls.length).toBe(1)
     expect(mockFetch.mock.calls[0][0]).toBe('/api/v1/artists')
@@ -31,11 +31,13 @@ describe('get all artists', async () => {
     const status = 404
     const mockFetch = setupMockFetch(false, {}, status)
 
-    const getAllArtists = createGetAllArtists(mockFetch)
+    const artistsService = createArtistsService(mockFetch)
 
-    await expect(getAllArtists()).rejects.toEqual(new Error(
-      'Tried to GET /api/v1/artists, returned status ' + status + '.'
-    ))
+    await expect(artistsService.getAllArtists()).rejects.toEqual(
+      new Error(
+        'Tried to GET /api/v1/artists, returned status ' + status + '.'
+      )
+    )
   })
 
   it('transforms returned data correctly', async () => {
@@ -50,9 +52,10 @@ describe('get all artists', async () => {
 
     const mockFetch = setupMockFetch(true, dataFromAPI)
 
-    const getAllArtists = createGetAllArtists(mockFetch)
+    const artistsService = createArtistsService(mockFetch)
 
-    await expect(getAllArtists()).resolves.toEqual(expectedResponse)
+    await expect(artistsService.getAllArtists())
+      .resolves.toEqual(expectedResponse)
   })
 
   it('sorts by artist name', async () => {
@@ -71,8 +74,9 @@ describe('get all artists', async () => {
 
     const mockFetch = setupMockFetch(true, dataFromAPI)
 
-    const getAllArtists = createGetAllArtists(mockFetch)
+    const artistsService = createArtistsService(mockFetch)
 
-    await expect(getAllArtists()).resolves.toEqual(expectedResponse)
+    await expect(artistsService.getAllArtists())
+      .resolves.toEqual(expectedResponse)
   })
 })

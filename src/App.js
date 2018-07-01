@@ -6,7 +6,7 @@ import './App.css'
 
 class App extends Component {
   componentDidMount () {
-    this.props.getAllArtists()
+    this.props.artistsService.getAllArtists()
       .then(artists => {
         if (this.shouldCancel) {
           return

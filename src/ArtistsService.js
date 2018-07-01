@@ -27,6 +27,9 @@ const getArtistStats = async function (fetch, artistId) {
   return res.json()
 }
 
-export const createGetAllArtists = function (fetch) {
-  return () => getAllArtists(fetch)
+export default function (fetch) {
+  return {
+    getAllArtists: () => getAllArtists(fetch),
+    getArtistStats: artistId => getArtistStats(fetch, artistId)
+  }
 }
