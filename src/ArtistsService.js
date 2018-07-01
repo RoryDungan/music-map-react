@@ -17,7 +17,7 @@ const getAllArtists = async function (fetch) {
 }
 
 const getArtistStats = async function (fetch, artistId) {
-  const url = apiUrl + '/' + artistId
+  const url = apiUrl + '/artist/' + artistId
   const res = await fetch(url)
 
   if (!res.ok) {
