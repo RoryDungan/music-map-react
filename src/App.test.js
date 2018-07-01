@@ -1,14 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import App from './App'
 
+enzyme.configure({ adapter: new Adapter() })
+
 it('renders without crashing', () => {
-  const div = document.createElement('div')
   const mockArtistsService = {
     getAllArtists: jest.fn()
       .mockReturnValue(Promise.resolve([]))
   }
 
-  ReactDOM.render(<App artistsService={mockArtistsService}/>, div)
-  ReactDOM.unmountComponentAtNode(div)
+  const app = enzyme.shallow(<App artistsService={mockArtistsService}/>)
+
+  expect(app.find('div').hasClass('App')).toBe(true)
 })
