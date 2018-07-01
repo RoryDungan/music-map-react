@@ -2,10 +2,12 @@ import React from 'react'
 import Select, { Option } from 'antd/lib/select'
 
 export default function ArtistsSelect (props) {
+  const artists = props.artists || []
+
   return (
     <Select>
       {
-        props.artists.map(a =>
+        artists.map(a =>
           <Option key={ a.id }>{ a.name }</Option>
         )
       }
