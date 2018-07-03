@@ -13,6 +13,7 @@
         "no-multiple-empty-lines": "warn",
         "padded-blocks": "warn",
         "no-trailing-spaces": "off",
+        "eol-last": "off",
         "brace-style": "warn",
         "no-unreachable": "warn",
         "indent": "warn",
