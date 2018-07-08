@@ -5,7 +5,7 @@ export default function ArtistsSelect (props) {
   const artists = props.artists || []
 
   return (
-    <Select>
+    <Select style={{ width: '100%' }} onChange={ props.onChange }>
       {
         artists.map(a =>
           <Option key={ a.id }>{ a.name }</Option>

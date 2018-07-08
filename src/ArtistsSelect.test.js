@@ -72,4 +72,20 @@ describe('ArtistsSelect', () => {
 
     expect(testObject.find(Option).first().key()).toBe(testId)
   })
+
+  it('passes onChange event through to Select', () => {
+
+    props = {
+      artists: [
+        { id: 'asdf', name: 'Sza' }
+      ],
+      onChange: id => id
+    }
+
+    const testObject = artistsSelect()
+
+    const selectProps = testObject.find(Select).first().props()
+
+    expect(selectProps.onChange).toEqual(props.onChange)
+  })
 })
