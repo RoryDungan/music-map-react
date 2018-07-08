@@ -21,7 +21,7 @@ export default function DetailsPane (props) {
       </Row>
       <Row>
         <Col>{ description }</Col>
-        <Col><img src={ image } /></Col>
+        <Col><img src={ image } alt='' /></Col>
       </Row>
     </div>
   )
