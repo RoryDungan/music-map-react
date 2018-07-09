@@ -8,12 +8,9 @@ const getAllArtists = async function (fetch) {
   }
   const resJSON = await res.json()
 
-  const artists = []
-  for (const k of Object.keys(resJSON)) {
-    artists.push({ id: k, name: resJSON[k] })
-  }
-
-  return artists.sort((a, b) => a.name.localeCompare(b.name))
+  return Object.keys(resJSON)
+    .map(k => ({ id: k, name: resJSON[k] }))
+    .sort((a, b) => a.name.localeCompare(b.name))
 }
 
 const getArtistStats = async function (fetch, artistId) {
