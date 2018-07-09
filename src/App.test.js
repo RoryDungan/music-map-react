@@ -7,9 +7,11 @@ import DetailsPane from './DetailsPane'
 
 enzyme.configure({ adapter: new Adapter() })
 
-const createMockArtistsService = (artists = []) => ({
+const createMockArtistsService = (artists = [], artistStatsFn) => ({
   getAllArtists: jest.fn()
-    .mockReturnValue(Promise.resolve(artists))
+    .mockReturnValue(Promise.resolve(artists)),
+  getArtistStats: jest.fn()
+    .mockImplementation(id => Promise.resolve(artistStatsFn(id)))
 })
 
 describe('App', () => {
@@ -50,7 +52,17 @@ describe('App', () => {
     expect.assertions(1)
 
     const testArtists = [{ id: '23', name: 'Grimes' }]
-    const mockArtistsService = createMockArtistsService(testArtists)
+    const testArtistDetails = {
+      imageUrl: 'https://last.fm/image.jpg',
+      name: 'Grimes',
+      streams: {
+        'AUS': 1,
+        'GBR': 2
+      },
+      description: 'cool tunes'
+    }
+
+    const mockArtistsService = createMockArtistsService(testArtists, () => testArtistDetails)
 
     const app = enzyme.shallow(<App artistsService={mockArtistsService}/>)
 
@@ -59,30 +71,9 @@ describe('App', () => {
     const onArtistChange = app.find(ArtistsSelect).props().onChange
     onArtistChange(testArtists[0].id)
 
-    app.update()
-
-    expect(app.find(DetailsPane).props().artist).toBe(testArtists[0])
-  })
-
-  it('can change selected artist', async () => {
-    expect.assertions(1)
-
-    const testArtists = [
-      { id: '23', name: 'Grimes' },
-      { id: '66', name: 'Yung Lean' }
-    ]
-    const mockArtistsService = createMockArtistsService(testArtists)
-
-    const app = enzyme.shallow(<App artistsService={mockArtistsService}/>)
-
     await Promise.resolve()
-
-    const onArtistChange = app.find(ArtistsSelect).props().onChange
-    onArtistChange(testArtists[0].id)
-    onArtistChange(testArtists[1].id)
-
     app.update()
 
-    expect(app.find(DetailsPane).props().artist).toBe(testArtists[1])
+    expect(app.find(DetailsPane).props().artist).toBe(testArtistDetails)
   })
 })

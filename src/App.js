@@ -33,13 +33,18 @@ class App extends Component {
   }
 
   setSelectedArtist (id) {
-    const newSelectedArtist = this.state.artists
-      .find(artist => artist.id === id)
+    this.props.artistsService.getArtistStats(id)
+      .then(stats => {
+        if (this.shouldCancel) {
+          return
+        }
 
-    this.setState({
-      ...this.state,
-      selectedArtist: newSelectedArtist
-    })
+        this.setState({
+          ...this.state,
+          selectedArtistDetails: stats
+        })
+      })
+      .catch(ex => console.error('Error requesting artist details: ' + ex.message))
   }
 
   render () {
@@ -54,7 +59,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <ArtistsSelect artists={ this.getArtists() } onChange={ id => this.setSelectedArtist(id) }/>
-        <DetailsPane artist={ this.state && this.state.selectedArtist }/>
+        <DetailsPane artist={ this.state && this.state.selectedArtistDetails }/>
       </div>
     )
   }
