@@ -37,8 +37,8 @@ class App extends Component {
       .find(artist => artist.id === id)
 
     this.setState({
-      selectedArtist: newSelectedArtist,
-      ...this.state
+      ...this.state,
+      selectedArtist: newSelectedArtist
     })
   }
 

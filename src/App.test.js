@@ -63,4 +63,26 @@ describe('App', () => {
 
     expect(app.find(DetailsPane).props().artist).toBe(testArtists[0])
   })
+
+  it('can change selected artist', async () => {
+    expect.assertions(1)
+
+    const testArtists = [
+      { id: '23', name: 'Grimes' },
+      { id: '66', name: 'Yung Lean' }
+    ]
+    const mockArtistsService = createMockArtistsService(testArtists)
+
+    const app = enzyme.shallow(<App artistsService={mockArtistsService}/>)
+
+    await Promise.resolve()
+
+    const onArtistChange = app.find(ArtistsSelect).props().onChange
+    onArtistChange(testArtists[0].id)
+    onArtistChange(testArtists[1].id)
+
+    app.update()
+
+    expect(app.find(DetailsPane).props().artist).toBe(testArtists[1])
+  })
 })
