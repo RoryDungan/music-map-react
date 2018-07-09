@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import Button from 'antd/lib/button'
 import ArtistsSelect from './ArtistsSelect'
+import DetailsPane from './DetailsPane'
 import './App.css'
 
 class App extends Component {
@@ -31,6 +32,16 @@ class App extends Component {
     return this.state.artists
   }
 
+  setSelectedArtist (id) {
+    const newSelectedArtist = this.state.artists
+      .find(artist => artist.id === id)
+
+    this.setState({
+      selectedArtist: newSelectedArtist,
+      ...this.state
+    })
+  }
+
   render () {
     return (
       <div className="App">
@@ -42,7 +53,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <ArtistsSelect artists={ this.getArtists() }></ArtistsSelect>
+        <ArtistsSelect artists={ this.getArtists() } onChange={ id => this.setSelectedArtist(id) }/>
+        <DetailsPane artist={ this.state && this.state.selectedArtist }/>
       </div>
     )
   }
