@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import Button from 'antd/lib/button'
-import ArtistsSelect from './ArtistsSelect.js'
+import ArtistsSelect from './ArtistsSelect'
 import './App.css'
 
 class App extends Component {
