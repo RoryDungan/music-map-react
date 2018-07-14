@@ -6,6 +6,15 @@ import MusicMap from './MusicMap'
 import './App.css'
 
 class App extends Component {
+  constructor () {
+    super()
+
+    // Set initial state
+    this.state = {
+      artists: []
+    }
+  }
+
   componentDidMount () {
     this.props.artistsService.getAllArtists()
       .then(artists => {
@@ -14,8 +23,8 @@ class App extends Component {
         }
 
         this.setState({
-          artists,
-          ...this.state
+          ...this.state,
+          artists
         })
       })
       .catch(ex => console.error('Error requesting artists: ' + ex.message))
@@ -23,13 +32,6 @@ class App extends Component {
 
   componentWillUnmount () {
     this.shouldCancel = true
-  }
-
-  getArtists () {
-    if (!this.state || !this.state.artists) {
-      return []
-    }
-    return this.state.artists
   }
 
   setSelectedArtist (id) {
@@ -54,9 +56,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <MusicMap />
-        <ArtistsSelect artists={ this.getArtists() } onChange={ id => this.setSelectedArtist(id) }/>
-        <DetailsPane artist={ this.state && this.state.selectedArtistDetails }/>
+        <MusicMap artist={ this.state.selectedArtistDetails }/>
+        <ArtistsSelect artists={ this.state.artists } onChange={ id => this.setSelectedArtist(id) }/>
+        <DetailsPane artist={ this.state.selectedArtistDetails }/>
       </div>
     )
   }
