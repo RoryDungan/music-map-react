@@ -4,7 +4,7 @@ import { Row, Col } from 'antd'
 export default function DetailsPane (props) {
   if (!props.artist) {
     return (
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <i>No artist selected.</i>
       </div>
     )
