@@ -45,7 +45,7 @@ describe('App', () => {
 
     const app = enzyme.shallow(<App artistsService={mockArtistsService}/>)
 
-    expect(app.find(DetailsPane).props().artist).toBe(null)
+    expect(app.find(DetailsPane).props().artist).toBe(undefined)
   })
 
   it('shows details for selected artist', async () => {
