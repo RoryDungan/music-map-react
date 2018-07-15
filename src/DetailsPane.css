@@ -1,0 +1,33 @@
+.artist-title {
+    margin: 10px;
+}
+
+.no-selection {
+    text-align: center;
+    margin: 10px;
+}
+
+.artist-details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+}
+
+.artist-details > * {
+    margin: 10px;
+}
+
+.artist-description {
+    flex: 8 1 320px;
+}
+
+.artist-image {
+    flex: 1 1 320px;
+}
+
+.artist-image > img {
+    width: 100%;
+}

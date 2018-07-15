@@ -1,10 +1,11 @@
 import React from 'react'
 import { Row, Col } from 'antd'
+import './DetailsPane.css'
 
 export default function DetailsPane (props) {
   if (!props.artist) {
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className='no-selection artist-title'>
         <i>No artist selected.</i>
       </div>
     )
@@ -16,13 +17,13 @@ export default function DetailsPane (props) {
 
   return (
     <div>
-      <Row>
+      <div className='artist-title'>
         <h1>{ name }</h1>
-      </Row>
-      <Row>
-        <Col>{ description }</Col>
-        <Col><img src={ image } alt='' /></Col>
-      </Row>
+      </div>
+      <div className='artist-details'>
+        <div className='artist-description'>{ description }</div>
+        <div className='artist-image'><img src={ image } alt='' /></div>
+      </div>
     </div>
   )
 }
