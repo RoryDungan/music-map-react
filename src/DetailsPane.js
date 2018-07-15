@@ -1,11 +1,10 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 import './DetailsPane.css'
 
 export default function DetailsPane (props) {
   if (!props.artist) {
     return (
-      <div className='no-selection artist-title'>
+      <div className='no-selection'>
         <i>No artist selected.</i>
       </div>
     )
