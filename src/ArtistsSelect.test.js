@@ -22,7 +22,7 @@ describe('ArtistsSelect', () => {
 
   beforeEach(() => {
     props = {
-      artists: undefined
+      artists: []
     }
     mountedArtistsSelect = undefined
   })

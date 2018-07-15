@@ -23,6 +23,8 @@ describe('DetailsPane', () => {
 
     expect(testObject.find('h1').text()).toEqual(testArtist.name)
     expect(testObject.find('img').prop('src')).toBe(testArtist.imageUrl)
-    expect(testObject.findWhere(c => c.text() === testArtist.description).length).toBe(1)
+    expect(testObject.find('.artist-description')).toHaveLength(1)
+    expect(testObject.find('.artist-description').text())
+      .toBe(testArtist.description)
   })
 })
