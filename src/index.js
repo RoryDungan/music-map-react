@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
 
 import createArtistsService from './ArtistsService'
 
@@ -10,5 +9,3 @@ ReactDOM.render(
   <App artistsService={createArtistsService(fetch)}/>,
   document.getElementById('root')
 )
-
-registerServiceWorker()
